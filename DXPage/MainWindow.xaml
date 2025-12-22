@@ -1,0 +1,39 @@
+﻿<dx:ThemedWindow 
+    x:Class="DXPage.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui" 
+    xmlns:Views="clr-namespace:DXPage.Views"     
+    Title="MainWindow" Height="800" Width="1000">
+    <Window.Resources>
+        <Style x:Key="NoHeaderItemStyle" TargetType="dxwui:PageViewItem">
+            <Setter Property="Visibility" Value="Collapsed"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <!-- Header -->
+        <Grid  Grid.Row="0" Background="AliceBlue">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="이전" Click="Prev_Click"/>
+                <Button Content="다음" Click="Next_Click"/>
+            </StackPanel>
+        </Grid>
+        <!-- Content -->
+        <dxwui:PageView x:Name="pageView" AnimationType="SlideHorizontal" Grid.Row="1" ShowBackButton="False" 
+                        Padding="0" ItemContainerStyle="{StaticResource NoHeaderItemStyle}">
+            <dxwui:PageViewItem >
+                <Views:PageView1 />
+            </dxwui:PageViewItem>
+            <dxwui:PageViewItem >
+                <Views:PageView2 />
+            </dxwui:PageViewItem>
+        </dxwui:PageView>
+
+    </Grid>
+</dx:ThemedWindow>
