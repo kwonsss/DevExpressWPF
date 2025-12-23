@@ -6,6 +6,11 @@
     xmlns:Views="clr-namespace:DXWPFSkeleton.Views"    
     Title="MainWindow" Height="1080" Width="1920" Loaded="Window_Loaded">
     <Grid>
-        <Views:HomeView />
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Views:HomeView Grid.Row="0" />
+        <Views:SettingView Grid.Row="1" StopButtonCommand="{Binding Path=DataContext.StopCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
     </Grid>
 </dx:ThemedWindow>
