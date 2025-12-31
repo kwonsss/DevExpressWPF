@@ -3,14 +3,36 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
-    xmlns:Views="clr-namespace:DXWPFSkeleton.Views"    
-    Title="MainWindow" Height="1080" Width="1920" Loaded="Window_Loaded">
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"    
+    xmlns:Views="clr-namespace:DXWPFSkeleton.Views" WindowStyle="None"   
+    Title="MainWindow" Height="1080" Width="1920" Loaded="Window_Loaded" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Views:HomeView Grid.Row="0" />
-        <Views:SettingView Grid.Row="1" StopButtonCommand="{Binding Path=DataContext.StopCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+        <!-- layout top -->
+        <Grid Grid.Row="0" Height="36px" MouseMove="TopBar_MouseMove" Background="#1F1F1F">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Source="/Resources/apps.png" Stretch="None"  />
+            <TextBlock Grid.Column="2" Margin="4,0" Text="{Binding AppName}" FontSize="14" Foreground="Gainsboro" VerticalAlignment="Center" />
+            <dxb:BarContainerControl Grid.Column="3" VerticalAlignment="Center">
+                <dxb:MainMenuControl >
+                    <dxb:BarButtonItem Content="Minimize" Margin="8,0" Glyph="{dx:FontIconSource Glyph=59681}" ItemClick="TopBarItem_ItemClick" />
+                    <dxb:BarButtonItem x:Name="WindowScreenBar" Content="Nomal" Margin="8,0" Glyph="{dx:FontIconSource Glyph=59682}" ItemClick="TopBarItem_ItemClick" />
+                    <dxb:BarButtonItem Content="Exit" Margin="8,0" MediumGlyph="{dx:DXImage 'SvgImages/HybridDemoIcons/BottomPanel/HybridDemo_Close.svg'}" ItemClick="TopBarItem_ItemClick" />
+                </dxb:MainMenuControl>
+            </dxb:BarContainerControl>
+        </Grid>
+        
+        
+        <Views:HomeView Grid.Row="1" />
+        <Views:SettingView Grid.Row="2" StopButtonCommand="{Binding Path=DataContext.StopCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
     </Grid>
 </dx:ThemedWindow>
